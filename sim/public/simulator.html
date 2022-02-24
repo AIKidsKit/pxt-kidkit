@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-manifest="" data-framework="typescript">
+
+<head>
+    <meta charset="utf-8">
+    <title>sample simulator</title>
+    <link rel="stylesheet" type="text/css" href="/sim/sim.css">
+    <style>
+        body {
+            background: transparent;
+            overflow: hidden;
+        }
+    </style>
+    <script src="/cdn/bluebird.min.js"></script>
+    <script src="/cdn/pxtsim.js"></script>
+    <script src="/sim/sim.js"></script>
+</head>
+
+<body onload="init();">
+  <div id="container">
+    <!-- img src="/sim/cat-happy.png" width="300"/ -->
+    <video width="320" height="280" id="video" controls autoplay></video><br/>
+    <!-- canvas  id="myCanvas" width="320" height="200"></canvas>
+    <svg id='svgcanvas' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 280">
+        <circle id='svgsprite' cx="100" cy="100" r="50" class="sprite" />
+        <circle id='svgsprite2' cx="50" cy="50" r="25" class="sprite" />
+    </svg-->
+   </div>
+<script>
+  function init() {
+  navigator.getUserMedia (
+              // constraints
+              {
+                 video: true,
+                 audio: false
+              },
+              // successCallback
+              function(localMediaStream) {
+                  video = document.querySelector('video');
+                  video.srcObject=localMediaStream;
+                  webcamStream = localMediaStream;
+              },
+              // errorCallback
+              function(err) {
+                 console.log("The following error occured: " + err);
+              }
+           );
+}
+</script>
+</body>
